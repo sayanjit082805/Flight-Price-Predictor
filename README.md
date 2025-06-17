@@ -14,6 +14,7 @@ This project implements a prediction system which can be used to predict the pri
 - **Input Parameters**: airline, number of stops/layovers, arrival and departure times, origin, destination, ticket class, and the number of days from the trip.
 - **Model**: Random Forest (Regressor)
 - **Price Estimation**: Estimates the cost of domestic flights.
+- **Streamlit Frontend**: Simple frontend built using [Streamlit](https://streamlit.io/).
 
 # Dataset
 
@@ -55,8 +56,9 @@ pip install -r requirements.txt
 
 # Usage
 
-As of now, there are no deployments/explicit-frontend to run the model. A sample `test.py` has been provided, simply tweak the required parameters and run the file using `python3 test.py`.
-(A frontend interface is planned)
+## Command Line/Locally
+
+A sample `test.py` has been provided, simply tweak the required parameters and run the file using `python3 test.py`.
 
 ```python
 # features = ['airline', 'stops', 'source_city', 'departure_time', 'arrival_time', 'destination_city', 'class', 'days_left']
@@ -88,12 +90,17 @@ print(f"The price of the ticket is: {round(predicted_price[0]):,} INR")
 
 `The price of the ticket is: 8,191 INR`
 
+## Deployment
+
+Deployed [here](https://flightpredictor.streamlit.app/).
+
+
 # Model Performance
 
-| Data          | MAE   | R² Score |
-| ------------- | ----- | -------- |
-| Training Data | 2333  | 0.965    |
-| Test Data     | 2,344 | 0.964    |
+| Data          | MAE   | R² Score | MSE         |
+| ------------- | ----- | -------- | ----        |
+| Training Data | 2,333  | 0.965   | 18234775.38 |
+| Test Data     | 2,344 | 0.964    | 18326984.04 |
 
 # Acknowledgements
 

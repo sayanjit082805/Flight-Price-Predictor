@@ -46,7 +46,7 @@ def input_features():
     if origin == destination:
         st.error("Origin and Destination cannot be the same.")
         return pd.DataFrame()
-    
+
     if departure_time == arrival_time:
         st.error("Departure time and Arrival time cannot be the same.")
         return pd.DataFrame()
@@ -81,7 +81,45 @@ disable = input.empty
 if st.button("Predict", disabled=disable):
     predicted_price = model.predict(input)
     st.success(
-        f"The estimated price of the ticket is: {round(predicted_price[0]):,} INR"
+        f"The estimated price of the ticket is: **₹ {round(predicted_price[0]):,}**"
     )
+
+
+st.header("About the Model", divider="gray")
+st.subheader("Dataset Details")
+st.markdown(
+    """
+The dataset used has been taken from [Kaggle](https://www.kaggle.com/datasets/shubhambathwal/flight-price-prediction/data).
+
+- `airline`: The name of the airline company.
+- `flight`: The flight code of the plane.
+- `source_city`: The city from which the flight takes off.
+- `departure_time`: The departure time of the flight.
+- `stops`: The number of stops the flight makes en-route.
+- `arrival_time`: The arrival time of the flight.
+- `destination_city`: The city where the flight will land.
+- `class`: The ticket class (_Economy_ or _Business_).
+- `duration`: The time required to travel between the two cities.
+- `days_left`: The number of days left for the flight/trip.
+- `price`: The ticket price (in _INR_).
+"""
+)
+
+st.subheader("Model Performance")
+
+st.write(""" 
+    The model used is a **Random Forest Regressor**, with hyperparameters tuned. Training was performed on the above dataset, which consists of approximately 300261 distinct flight booking options. The model achieved the following performance metrics on the training and validation/test datasets:
+""")
+
+metrics = pd.DataFrame(
+    {
+        "Data": ["Training Data", "Validation/Test Data"],
+        "Mean Absolute Error (MAE)": [2333, 2344],
+        "R-squared (R²)": [0.965, 0.964],
+        "Mean Squared Error (MSE)(~)": [1.82e+07, 1.83e+07],
+    }
+)
+
+st.table(metrics)
 
 st.divider()
