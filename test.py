@@ -9,14 +9,14 @@ model_columns = joblib.load("flight_price_model_columns.pkl")
 new_price = pd.DataFrame(
     [
         {
-            "airline": "Air_India",
+            "airline": "AirAsia",
             "stops": "zero",
-            "source_city": "Kolkata",
-            "departure_time": "Morning",
+            "source_city": "Bangalore",
+            "departure_time": "Early_Morning",
             "arrival_time": "Afternoon",
-            "destination_city": "Mumbai",
+            "destination_city": "Kolkata",
             "class": "Economy",
-            "days_left": 5,
+            "days_left": 20,
         }
     ]
 )
